@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stacja benzynowa</title>
+    <link rel="stylesheet" href="styl2.css">
+</head>
+<body>
+    <header>
+        <h1>Całodobowa stacja paliw</h1>
+    </header>
+
+    <nav>
+
+        <a href="stacja.html">
+            <img src="home.png" alt="home">
+        </a>       ?
+        
+        <a href="obliczenia.html">
+            <img src="znak.png" alt="znak">
+        </a>
+        
+        <a href="kwerendy.txt">Pobierz kwerendy</a>
+
+    </nav>
+
+        <main>
+
+        <section id="lewy"> 
+
+           <h2>Orientacyjny koszt paliwa</h2>
+
+           <p>Rodzaj paliwa (1-benzyna, 2-olej napędowy)</p>
+           
+           <input type="number" id="rodzaj" min="1" max="2">
+           
+           <p>Ile litrów?</p>
+           
+           
+           <input type="number" id="ile">
+           
+            <input type="button" value="OBLICZ" id="rachunek">
+            <div id="wynik"></div>
+             
+            
+        </section>
+
+        
+
+        <section id="prawy">
+            <img src="samochod.png" alt="samochod">
+        </section>
+
+        </main>
+   
+    <footer>
+        <p>Stronę opracował: Feek3r</p>
+    </footer>
+</body>
+
+
+<script>
+
+    const ceny={
+        1:3,
+        2:4
+    }
+
+    function oblicz(ile,rodzaj){
+        return ile*ceny[rodzaj]
+    }
+
+    let button=document.getElementById("rachunek")
+
+    button.addEventListener("click",function(){
+        let ile=parseFloat(document.getElementById("ile").value)
+        let rodzaj=parseFloat(document.getElementById("rodzaj").value)
+        let wynik=document.getElementById("wynik")
+
+        if(Number.isNaN(ile)){
+            alert("Podaj prawidłową wartość")
+            return;
+        }
+
+        if(Number.isNaN(rodzaj)){
+            alert("Podaj prawidłową wartość")
+            return;
+        }
+
+        if(rodzaj<1 || rodzaj > 2){
+            alert("Podaj prawidłową wartość")
+            return;
+        }
+
+        let obliczenie=oblicz(ile,rodzaj)
+
+        wynik.innerText=obliczenie
+
+    })
+
+</script>
+
+
+</html>
