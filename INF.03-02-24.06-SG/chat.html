@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styl.css">
+
+    
+    <title>Chat</title>
+</head>
+<body>
+    <header id="baner">
+        <h2>Chat</h2>
+    </header>
+
+    <aside>
+        <h3>Chaty</h3>
+        <ul>
+            <li>Ogólny</li>
+            <li>Tematyczne
+                <ol>
+                    <li>Turystyczny</li>
+                    <li>Żeglarski</li>
+                    <li>Fialteliastyczny</li>
+                    <li>Hodowla zwierzątek domowych</li>
+                </ol>
+            </li>
+        </ul>
+        <h3>Uczestnicy</h3>
+        <p>Jolanta Nowak</p>
+        <img src="Jolka.jpg" alt="Jolanta Nowak">
+        <p>Krzysztof Łukasiński</p>
+        <img src="Krzysiek.jpg" alt="Krzysztof Łukasiński">
+    </aside>
+
+    <main>
+        <section id="oknoChat">
+
+             <div class="Jolka">
+            <img src="Jolka.jpg">
+            <p>Cześć idziesz jutro do kina?</p>
+        </div>
+
+        <div class="Krzysiek">
+            <img src="Krzysiek.jpg">
+            <p>Tak! a Ty?</p>
+        </div>
+
+
+        </section>
+       
+        Wpisz wiadomość <input type="text" id="message"> <button id="send">Wyślij</button>
+        <br>
+        <button id="losowe">Generuj losową odpowiedź</button>
+
+    </main>
+
+    <footer>
+        <h5>Chat wykonał: NUMER ZDAJĄCEGO</h5>
+    </footer>
+
+
+ <script>
+
+        let wylosowanaWiadomosc=""
+        let losoweWiadomosci=
+            [
+            "Świetnie!",
+            "Kto gra główną rolę?",
+            "Lubisz filmy Tego reżysera?",
+            "Będę 10 minut wcześniej",
+            "Może kupimy sobie popcorn?",
+            "Ja wolę Colę",
+            "Zaproszę jeszcze Grześka",
+            "Tydzień temu też byłem w kinie na Diunie",
+            "Ja funduję bilety"
+            ]
+
+        let buttonLosowe=document.getElementById("losowe")
+
+        buttonLosowe.addEventListener("click", ()=>{
+            wylosowanaWiadomosc=Math.floor(Math.random() * losoweWiadomosci.length )
+            //console.log(losoweWiadomosci[wylosowanaWiadomosc]) TAB[INDEX]
+
+            let oknoChat=document.getElementById("oknoChat")
+            let odpowiedz=document.createElement("div")
+            let obrazek=document.createElement("img")
+            let paragraf=document.createElement("p")
+            let wiadomosc=losoweWiadomosci[wylosowanaWiadomosc]
+            //console.log(wiadomosc)
+            odpowiedz.classList.add("Krzysiek")
+            obrazek.src="Krzysiek.jpg"
+            oknoChat.appendChild(odpowiedz)
+            odpowiedz.appendChild(obrazek)
+            odpowiedz.appendChild(paragraf)
+            paragraf.innerText=wiadomosc
+            oknoChat.scrollTop=oknoChat.scrollHeight
+        })
+
+        let buttonSend=document.getElementById("send")
+
+        buttonSend.addEventListener("click",()=>{
+        
+            let oknoChat=document.getElementById("oknoChat")
+            let message=document.getElementById("message")
+            let div=document.createElement("div")
+            let obrazek=document.createElement("img")
+            let paragraf=document.createElement("p")
+                let message2=message.value
+                div.classList.add("Jolka")
+                obrazek.src="Jolka.jpg"
+                paragraf.innerText=message2
+                message.value=""
+                div.appendChild(obrazek)
+                div.appendChild(paragraf)
+                oknoChat.appendChild(div)
+                oknoChat.scrollTo ({
+                    top:oknoChat.scrollHeight,
+                    behavior:"smooth"
+                    })
+        })
+    </script>
+
+
+</body>
+
+
+   
+</html>
